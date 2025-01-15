@@ -19,7 +19,7 @@
       }
     ],
     "security": {
-      "csp": null
+      "csp": "default-src 'self' https://api.cesium.com https://assets.ion.cesium.com; img-src 'self' data: https://assets.ion.cesium.com https://*.cesium.com blob:; worker-src 'self' blob:; script-src 'self' 'unsafe-eval' 'unsafe-inline' blob:; style-src 'self' 'unsafe-inline';"
     }
   },
   "bundle": {
@@ -43,3 +43,4 @@
     }
   }
 }
+

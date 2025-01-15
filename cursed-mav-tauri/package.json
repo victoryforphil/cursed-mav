@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build", 
     "preview": "vite preview",
     "tauri": "tauri"
   },
@@ -31,12 +31,17 @@
     "@tiptap/pm": "^2.11.2",
     "@tiptap/react": "^2.11.2",
     "@tiptap/starter-kit": "^2.11.2",
+    "cesium": "^1.116.0",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.13",
     "mantine-react-table": "^2.0.0-beta.8",
+    "mapbox-gl": "^3.9.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "recharts": "^2.15.0"
+    "react-map-gl": "^7.1.8",
+    "react-router-dom": "^7.1.1",
+    "recharts": "^2.15.0",
+    "resium": "^1.18.3"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2",
@@ -44,6 +49,6 @@
     "postcss": "^8.5.1",
     "postcss-preset-mantine": "^1.17.0",
     "postcss-simple-vars": "^7.0.1",
-    "vite": "^6.0.3"
+    "vite": "^6.0.3",
+    "vite-plugin-cesium": "^1.2.23"
   }
-}

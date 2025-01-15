@@ -197,23 +197,31 @@ function Connection() {
         {connectionHistory.length > 0 && (
           <>
             <Text size="sm" fw={500} mt="md">Recent Connections</Text>
-            {connectionHistory.map((entry, index) => (
-              <Card 
-                key={index} 
-                withBorder 
-                padding="xs"
-                style={{ cursor: 'pointer' }}
-                onClick={() => loadHistoryEntry(entry)}
-              >
-                <Group>
-                  <Badge>{entry.type.toUpperCase()}</Badge>
-                  <Text size="sm">{entry.address}:{entry.port}</Text>
-                  <Text size="xs" c="dimmed" ml="auto">
-                    {new Date(entry.timestamp).toLocaleString()}
-                  </Text>
-                </Group>
-              </Card>
-            ))}
+            {connectionHistory
+              .filter((entry, index, self) => 
+                index === self.findIndex(e => 
+                  e.type === entry.type && 
+                  e.address === entry.address && 
+                  e.port === entry.port
+                )
+              )
+              .map((entry, index) => (
+                <Card 
+                  key={index} 
+                  withBorder 
+                  padding="xs"
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => loadHistoryEntry(entry)}
+                >
+                  <Group>
+                    <Badge>{entry.type.toUpperCase()}</Badge>
+                    <Text size="sm">{entry.address}:{entry.port}</Text>
+                    <Text size="xs" c="dimmed" ml="auto">
+                      {new Date(entry.timestamp).toLocaleString()}
+                    </Text>
+                  </Group>
+                </Card>
+              ))}
           </>
         )}
       </Stack>

@@ -114,6 +114,18 @@ pub async fn connect_to_mav(
                     return Err("Failed to send parameters request".to_string());
                 }
 
+                // Send stream reqeust
+                if let Err(e) = mav_con.send(
+                    &mavlink::MavHeader::default(),
+                    &MavLinkHelper::request_stream(),
+                ) {
+                    on_event
+                        .send(ConnectUpdate::Failed {
+                            reason: format!("Failed to send stream request: {}", e),
+                        })
+                        .map_err(|e| e.to_string())?;
+                }
+                // Send heartbeat
                 info!("Mavlink // Connect // Sending heartbeat");
 
                 let mav_con = Arc::new(mav_con);
