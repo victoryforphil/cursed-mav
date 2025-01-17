@@ -11,6 +11,8 @@ use tauri::path::BaseDirectory;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
+    // Log dir is cargo create dir + .cursed/logs/
+
     tauri::Builder::default()
         .setup(|app| {
             // Load parameter XML
