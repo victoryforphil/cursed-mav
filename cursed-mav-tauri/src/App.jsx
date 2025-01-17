@@ -17,7 +17,7 @@ import Connection from "./Connection";
 import RawLogs from "./RawLogs";
 import ThreeDView from './ThreeDView';
 import MapView from "./MapView";
-import MissionPlanner from "./MissionPlanner";
+import MissionPlanner from "./mission/MissionPlanner";
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 
