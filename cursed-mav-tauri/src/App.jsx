@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useLocation, Routes, Route, Navigate } from "react-router-dom";
 import { useDisclosure } from "@mantine/hooks";
 import { Notifications } from '@mantine/notifications';
-import { IconList, IconHeartRateMonitor, IconTerminal2, Icon3dCubeSphere, IconMenu2, IconX, IconMap } from '@tabler/icons-react';
+import { IconList, IconHeartRateMonitor, IconTerminal2, Icon3dCubeSphere, IconMenu2, IconX, IconMap, IconRoute } from '@tabler/icons-react';
 import { MantineProvider, Text, rem, Box, ActionIcon } from "@mantine/core";
 import { AppShell, Burger, Group, NavLink } from "@mantine/core";
 
@@ -17,6 +17,7 @@ import Connection from "./Connection";
 import RawLogs from "./RawLogs";
 import ThreeDView from './ThreeDView';
 import MapView from "./MapView";
+import MissionPlanner from "./MissionPlanner";
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 
@@ -74,13 +75,8 @@ function App() {
           breakpoint: 'sm',
           collapsed: { mobile: !asideOpened, desktop: !asideOpened }
         }}
-        padding={{
-          base: 'md',
-          sm: 'xl'
-        }}
-        layout="alt"
-        
         padding="md"
+        layout="alt"
       >
         <AppShell.Header>
           <Group h="100%" px="md" justify="space-between">
@@ -152,6 +148,13 @@ function App() {
               active={isRouteActive('/map')}
               variant="filled"
             />
+            <NavLink
+              label="Mission Planner"
+              leftSection={<IconRoute style={{ width: rem(14), height: rem(14) }} />}
+              onClick={() => navigate('/mission')}
+              active={isRouteActive('/mission')}
+              variant="filled"
+            />
           </Box>
         </AppShell.Navbar>
         <AppShell.Aside p="md">
@@ -164,6 +167,7 @@ function App() {
             <Route path="/logs" element={<RawLogs />} />
             <Route path="/3d" element={<ThreeDView />} />
             <Route path="/map" element={<MapView />} />
+            <Route path="/mission" element={<MissionPlanner />} />
             <Route path="/" element={<Navigate to="/map" replace />} />
           </Routes>
         </AppShell.Main>
