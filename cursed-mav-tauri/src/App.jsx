@@ -19,6 +19,7 @@ import ThreeDView from './ThreeDView';
 import MapView from "./MapView";
 import MissionPlanner from "./mission/MissionPlanner";
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { GCS_Connection } from "./data/ws.singleton";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  GCS_Connection();
   // Load the last visited route from localStorage on mount
   useEffect(() => {
     const lastRoute = localStorage.getItem('lastRoute');

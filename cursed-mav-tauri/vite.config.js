@@ -1,11 +1,16 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import cesium from 'vite-plugin-cesium';
-
+import path from 'path';
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
   plugins: [react(), cesium()],
   base: "./",
+  resolve: {
+    alias: {
+      '#': path.resolve(__dirname, 'src'), // Replace 'src' with your source directory
+    },
+  },
 
   // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
   clearScreen: false,
@@ -27,4 +32,5 @@ export default defineConfig(async () => ({
     // produce sourcemaps for debug builds
     sourcemap: !!process.env.TAURI_DEBUG,
   },
+  
 }));

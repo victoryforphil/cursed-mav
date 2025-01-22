@@ -1,0 +1,54 @@
+fileGroups:
+  sources:
+    - 'src/**/*'
+    - 'public/**/*'
+    - 'index.html'
+    - 'vite.config.ts'
+    - 'package.json'
+    - 'tsconfig*.json'
+
+tasks:
+  install:
+    command: 'npm install --legacy-peer-deps'
+    inputs:
+      - 'package.json'
+    options:
+      cache: false
+      
+  build:
+    command: 'npm run build'
+    deps: ['install']
+    inputs:
+      - '@globs(sources)'
+    outputs:
+      - 'dist'
+      
+  dev:
+    command: 'npm run dev'
+    deps: ['install']
+    local: true
+    inputs:
+      - '@globs(sources)'
+    options:
+      persistent: true
+      
+  run:
+    command: 'npm run preview'
+    deps: ['build']
+    local: true 
+
+  test:
+    command: 'npm run test'
+    deps: ['build']
+    inputs:
+      - '@globs(sources)'
+
+  clean:
+    command: 'rm -rf node_modules/ dist/'
+    inputs:
+      - 'node_modules'
+      - 'dist'
+    local: true
+    options:
+      cache: false
+

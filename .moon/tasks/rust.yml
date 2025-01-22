@@ -1,0 +1,45 @@
+fileGroups:
+  sources-rs:
+    - 'src/**/*'
+    - 'Cargo.toml'
+    - 'Cargo.lock'
+
+tasks:
+
+  install:
+    command: 'cargo fetch'
+    inputs:
+      - 'Cargo.toml'
+      - 'Cargo.lock'
+      
+  build:
+    command: 'cargo build'
+    deps: ['install']
+    inputs:
+      - '@globs(sources-rs)'
+      
+  dev:
+    command: 'cargo run'
+    deps: ['install']
+    local: true
+    inputs:
+      - '@globs(sources-rs)'
+    
+  run:
+    command: 'cargo run'
+    deps: ['build']
+    local: true
+    inputs:
+      - '@globs(sources-rs)'
+
+  test:
+    command: 'cargo test'
+    deps: ['build']
+    inputs:
+      - '@globs(sources-rs)'
+
+  build-release:
+    command: 'cargo build --release'
+    deps: ['install']
+    inputs:
+      - '@globs(sources-rs)'  

@@ -1,0 +1,10 @@
+cache/*
+.moon/cache/*
+.moon/docker/*
+.moon/temp/*
+.moon/docker/*
+.moon/docker/*
+.moon/docker/*
+.moon/docker/*
+.moon/docker/*
+cache

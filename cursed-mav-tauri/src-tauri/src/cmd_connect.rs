@@ -192,6 +192,7 @@ pub struct MavlinkMessage {
     pub message: MavlinkMessageType,
 }
 
+
 async fn recv_messages(
     app: AppHandle,
     vehicle: Arc<Box<dyn MavConnection<MavlinkMessageType> + Send + Sync>>,
