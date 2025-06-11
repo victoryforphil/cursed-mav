@@ -1,0 +1,199 @@
+# TypeScript + React + Bun + Shadcn UI Cursor Rules
+
+You are an expert in TypeScript, React, Bun, Vite, Shadcn UI, Radix UI, and Tailwind CSS.
+
+## Core Development Principles
+
+- Write concise, technical TypeScript code with accurate examples
+- Use functional and declarative programming patterns; avoid classes
+- Prefer iteration and modularization over code duplication
+- Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError)
+- Structure files: exported component, subcomponents, helpers, static content, types
+
+## Code Style and Structure
+
+### TypeScript Usage
+- Use TypeScript for all code; prefer interfaces over types
+- Avoid enums; use maps or const assertions instead
+- Use functional components with TypeScript interfaces
+- Enable strict mode in TypeScript for better type safety
+- Never use `any` type; use proper typing or `unknown` with type guards
+
+### Naming Conventions
+- Use lowercase with dashes for directories (e.g., `components/auth-wizard`)
+- Use PascalCase for components and interfaces
+- Use camelCase for variables, functions, and props
+- Favor named exports for components
+- Prefix boolean variables with `is`, `has`, `can`, `should`
+
+### File Organization
+- One component per file
+- Use `index.ts` files for clean imports
+- Group related files in feature-based directories
+- Keep components, hooks, utils, and types in separate directories
+
+## React Best Practices
+
+### Component Structure
+- Use functional components exclusively
+- Implement hooks correctly (useState, useEffect, useContext, useReducer, useMemo, useCallback)
+- Follow the Rules of Hooks (only call at top level, only from React functions)
+- Create custom hooks to extract reusable component logic
+- Use React.memo() for component memoization when appropriate
+- Prefer composition over inheritance
+
+### Event Handlers
+- Use arrow functions for event handlers
+- Prefix event handler functions with `handle` (e.g., `handleClick`, `handleSubmit`)
+- Keep event handlers focused and delegate complex logic to separate functions
+
+### State Management
+- Minimize useState; prefer derived state and props
+- Use useReducer for complex state logic
+- Implement proper cleanup in useEffect
+- Use context sparingly; prefer prop drilling for simple cases
+- Minimize useEffect dependencies; prefer useMemo and useCallback or direct arguments to functions
+
+## Bun & Build Tools
+
+### Package Management
+- Use `bun` instead of npm/yarn for package management
+- Use `bunx` instead of npx for executing packages
+- Leverage Bun's native TypeScript support
+- Use Bun's built-in test runner when possible
+
+### Performance
+- Leverage Bun's fast startup and execution times
+- Use Bun's native bundler when appropriate
+- Optimize imports to reduce bundle size
+
+## UI and Styling
+
+### Shadcn UI Integration
+- Use Shadcn UI components as the primary UI building blocks
+- Import components from `@/components/ui`
+- Extend Shadcn components through composition, not modification
+- Follow Shadcn's theming and customization patterns
+
+### Tailwind CSS
+- Use Tailwind for all styling; avoid CSS-in-JS or separate CSS files
+- Implement responsive design with mobile-first approach
+- Use Tailwind's design tokens for consistency
+- Organize classes logically: layout, spacing, colors, typography
+- Use `cn()` utility for conditional classes
+
+### Design Patterns
+- Implement proper dark mode support
+- Ensure high accessibility (a11y) standards with ARIA attributes
+- Use semantic HTML elements
+- Implement keyboard navigation support
+
+## Error Handling and Validation
+
+### Error Handling
+- Prioritize error handling and edge cases
+- Handle errors at the beginning of functions
+- Use early returns for error conditions
+- Implement proper error boundaries
+- Use guard clauses for preconditions
+
+### Validation
+- Use Zod for runtime validation and type inference
+- Implement form validation with react-hook-form + Zod
+- Validate data at API boundaries
+- Use TypeScript for compile-time validation
+
+## Code Quality
+
+### Formatting and Linting
+- Use Prettier for consistent code formatting
+- Configure ESLint with TypeScript rules
+- Use consistent import ordering
+- Remove unused imports and variables
+
+### Performance Optimization
+- Use React.lazy() and Suspense for code splitting
+- Implement proper memoization with useMemo and useCallback
+- Optimize re-renders by avoiding inline objects and functions
+- Use dynamic imports for non-critical code
+
+### Testing
+- Write unit tests for utility functions and hooks
+- Use React Testing Library for component testing
+- Test user interactions, not implementation details
+- Mock external dependencies appropriately
+
+## Security Best Practices
+
+- Sanitize user inputs to prevent XSS attacks
+- Use dangerouslySetInnerHTML sparingly and only with sanitized content
+- Implement proper authentication patterns
+- Validate all external data
+
+## API Integration
+
+- Use fetch or modern HTTP clients
+- Implement proper error handling for network requests
+- Use TypeScript interfaces for API responses
+- Handle loading states appropriately
+
+## Environment and Configuration
+
+- Use environment variables for configuration
+- Never commit secrets or sensitive data
+- Use proper TypeScript path aliases for clean imports
+- Configure absolute imports with `@/` prefix
+
+## Key Conventions
+
+1. **Component Props**: Always define explicit interfaces for component props
+2. **Hooks**: Extract reusable logic into custom hooks
+3. **Utility Functions**: Keep pure functions in separate utility files
+4. **Constants**: Define constants in separate files and export them
+5. **Types**: Create dedicated type definition files for complex types
+
+## Example Component Structure
+
+```typescript
+interface ButtonProps {
+  variant?: 'primary' | 'secondary'
+  size?: 'sm' | 'md' | 'lg'
+  isLoading?: boolean
+  children: React.ReactNode
+  onClick?: () => void
+}
+
+export const Button: React.FC<ButtonProps> = ({
+  variant = 'primary',
+  size = 'md',
+  isLoading = false,
+  children,
+  onClick,
+}) => {
+  const handleClick = () => {
+    if (isLoading) return
+    onClick?.()
+  }
+
+  return (
+    <button
+      className={cn(
+        'inline-flex items-center justify-center rounded-md font-medium transition-colors',
+        {
+          'bg-primary text-primary-foreground hover:bg-primary/90': variant === 'primary',
+          'bg-secondary text-secondary-foreground hover:bg-secondary/80': variant === 'secondary',
+          'h-8 px-3 text-sm': size === 'sm',
+          'h-10 px-4': size === 'md',
+          'h-12 px-6 text-lg': size === 'lg',
+        }
+      )}
+      disabled={isLoading}
+      onClick={handleClick}
+    >
+      {isLoading ? 'Loading...' : children}
+    </button>
+  )
+}
+```
+
+Follow these guidelines consistently to maintain high code quality and developer experience. 

@@ -1,0 +1,37 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Project-Specific Guidelines
+
+## Codebase Architecture
+- This appears to be a mixed Rust + React project
+- Main web application is in `cmav_web/` directory
+- Uses Moon build system for workspace management
+- Backend services likely in Rust (Cargo.toml in root)
+
+## Development Workflow
+- Use `bun dev` for frontend development in cmav_web
+- Use Moon tasks for build orchestration
+- Web app uses Vite for development server
+- Frontend: React + TypeScript + Shadcn UI + Mantine
+
+## Folder Structure Conventions
+- Web frontend: `cmav_web/src/`
+- Shared types and utilities: Consider creating shared packages
+- Follow Moon workspace conventions for multi-project setup
+
+## Specific Project Rules
+- Maintain separation between Rust backend and React frontend
+- Use TypeScript interfaces for communication between frontend/backend
+- Follow consistent error handling patterns across the stack
+- Consider API versioning for backend services
+
+## Team Conventions
+- Add any team-specific coding standards here
+- Document any project-specific patterns or architectural decisions
+- Include any domain-specific knowledge or business logic patterns
+
+## Notes
+This file can be customized with project-specific rules, domain knowledge, or team conventions. Edit as needed for your specific use case.

@@ -1,0 +1,125 @@
+/* Dockview Theme for Shadcn Integration
+ * Provides light/dark theming that matches Shadcn default theme
+ */
+
+.dockview-theme-shadcn {
+  /* Light mode colors */
+  --dv-background-color: var(--background);
+  --dv-group-view-background-color: var(--card);
+  
+  /* Tab styling */
+  --dv-tabs-and-actions-container-height: 38px;
+  --dv-tabs-and-actions-container-background-color: var(--card);
+  --dv-tabs-and-actions-container-font-size: 13px;
+  
+  /* Active/Inactive panel colors */
+  --dv-activegroup-visiblepanel-tab-background-color: var(--primary);
+  --dv-activegroup-visiblepanel-tab-color: var(--primary-foreground);
+  --dv-activegroup-hiddenpanel-tab-background-color: var(--muted);
+  --dv-activegroup-hiddenpanel-tab-color: var(--muted-foreground);
+  
+  --dv-inactivegroup-visiblepanel-tab-background-color: var(--secondary);
+  --dv-inactivegroup-visiblepanel-tab-color: var(--secondary-foreground);
+  --dv-inactivegroup-hiddenpanel-tab-background-color: var(--muted);
+  --dv-inactivegroup-hiddenpanel-tab-color: var(--muted-foreground);
+  
+  /* Tab divider styling */
+  --dv-tab-divider-color: var(--border);
+  
+  /* Drag/drop styling */
+  --dv-drag-over-background-color: var(--accent);
+  --dv-drag-over-border-color: var(--primary);
+  
+  /* Scrollbar colors */
+  --dv-tabs-container-scrollbar-color: var(--muted-foreground);
+  
+  /* Separator styling */
+  --dv-separator-border: 1px solid var(--border);
+  
+  /* Border styling */
+  --dv-paneview-header-border-color: var(--border);
+  --dv-paneview-active-outline-color: var(--primary);
+  
+  /* Hover states */
+  --dv-icon-hover-background-color: var(--accent);
+  
+  /* Box shadows */
+  --dv-floating-box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  
+  /* Sash colors (resize handles) */
+  --dv-active-sash-color: var(--primary);
+  
+  /* Tab close icon - using a base64 SVG for a clean "x" icon */
+  --dv-tab-close-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXgiPjxwYXRoIGQ9Ik0xOCA2IDYgMTgiLz48cGF0aCBkPSJtNiA2IDEyIDEyIi8+PC9zdmc+");
+  
+  /* Other settings */
+  --dv-side-nav-arrow-opacity: 0;
+  --dv-side-nav-arrow-hover-opacity: 0.9;
+}
+
+/* Panel and tab styling */
+.dockview-theme-shadcn .tabs-container {
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.dockview-theme-shadcn .tabs-and-actions-container {
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.dockview-theme-shadcn .tab {
+  border-radius: var(--radius) var(--radius) 0 0;
+  margin-right: 2px;
+  padding: 0 10px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.dockview-theme-shadcn .panel {
+  border-radius: 0 0 var(--radius) var(--radius);
+  overflow: hidden;
+}
+
+/* Sash (resize handle) styling */
+.dockview-theme-shadcn .split-view-sash {
+  transition: background-color 0.15s ease;
+}
+
+.dockview-theme-shadcn .split-view-sash:hover {
+  background-color: var(--primary);
+}
+
+/* Watermark styling */
+.dockview-theme-shadcn .watermark {
+  color: var(--muted-foreground);
+  opacity: 0.4;
+  font-size: 14px;
+}
+
+/* Tab close button styling */
+.dockview-theme-shadcn .tab-actions .tab-action-close {
+  opacity: 0.6;
+  transition: opacity 0.15s ease;
+}
+
+.dockview-theme-shadcn .tab-actions .tab-action-close:hover {
+  opacity: 1;
+  background-color: var(--destructive);
+  border-radius: 50%;
+}
+
+/* Drag and drop overlay styling */
+.dockview-theme-shadcn .drag-overlay {
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  background-color: var(--primary-light);
+  opacity: 0.1;
+  border-radius: var(--radius);
+}
+
+/* Group header styling */
+.dockview-theme-shadcn .groupview.active-group > .tabs-and-actions-container {
+  border-bottom: 2px solid var(--primary);
+}
+
+.dockview-theme-shadcn .groupview.inactive-group > .tabs-and-actions-container {
+  border-bottom: 1px solid var(--border);
+} 

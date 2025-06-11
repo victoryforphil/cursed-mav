@@ -1,0 +1,147 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# MCP Sequential Thinking Integration
+
+## When to Use Sequential Thinking
+- **Complex Feature Implementation**: Breaking down large features into manageable steps
+- **Architecture Decisions**: Systematically evaluating design choices
+- **Debugging Complex Issues**: Structured approach to root cause analysis
+- **Code Refactoring**: Planning and executing large-scale code changes
+- **Performance Optimization**: Methodical analysis and improvement strategies
+
+## Five-Stage Thinking Framework
+
+### 1. Problem Definition
+- Clearly articulate the problem or goal
+- Define scope and constraints
+- Identify success criteria
+- Example: "Implement user authentication with OAuth2 while maintaining existing session management"
+
+### 2. Research
+- Gather relevant information and context
+- Review existing codebase patterns
+- Investigate available libraries and tools
+- Consider best practices and constraints
+- Example: "Research OAuth2 libraries compatible with our React + Bun setup"
+
+### 3. Analysis
+- Evaluate different approaches
+- Consider trade-offs and implications
+- Identify dependencies and risks
+- Map out integration points
+- Example: "Compare NextAuth.js vs Auth0 SDK for our use case"
+
+### 4. Synthesis
+- Combine research findings into actionable plan
+- Create detailed implementation strategy
+- Define testing approach
+- Plan rollout strategy
+- Example: "Design auth flow with NextAuth.js, integrate with existing UI components"
+
+### 5. Conclusion
+- Summarize decisions and rationale
+- Create implementation checklist
+- Define success metrics
+- Plan follow-up actions
+- Example: "Implement NextAuth.js with GitHub provider, test with existing components"
+
+## MCP Sequential Thinking Commands
+
+### Basic Usage
+```
+process_thought(
+  thought="[Your detailed thought here]",
+  thought_number=1,
+  total_thoughts=5,
+  next_thought_needed=true,
+  stage="Problem Definition"
+)
+```
+
+### Advanced Features
+- **Tags**: Categorize thoughts with relevant keywords
+- **Axioms Used**: Document principles or patterns applied
+- **Assumptions Challenged**: Note what you're questioning or validating
+
+### Example Workflow
+```
+# Stage 1: Problem Definition
+process_thought(
+  thought="Need to add real-time notifications to the dashboard without impacting performance",
+  thought_number=1,
+  total_thoughts=5,
+  stage="Problem Definition",
+  tags=["real-time", "performance", "dashboard"],
+  axioms_used=["Don't optimize prematurely", "User experience first"]
+)
+
+# Stage 2: Research
+process_thought(
+  thought="Investigating WebSockets vs Server-Sent Events vs polling for notifications",
+  thought_number=2,
+  total_thoughts=5,
+  stage="Research",
+  tags=["websockets", "sse", "polling"],
+  assumptions_challenged=["WebSockets are always better than polling"]
+)
+```
+
+## Integration with Cursor Workflow
+
+### For Feature Development
+1. **Use Sequential Thinking** to plan the feature architecture
+2. **Reference the plan** in your Cursor chat with `@` symbols
+3. **Implement incrementally** following your structured approach
+4. **Update thinking** as you discover new requirements
+
+### For Bug Investigation
+1. **Problem Definition**: Clearly describe the bug and its impact
+2. **Research**: Gather error logs, reproduce steps, review recent changes
+3. **Analysis**: Form hypotheses about root causes
+4. **Synthesis**: Plan debugging approach and potential fixes
+5. **Conclusion**: Document solution and prevention strategies
+
+### For Code Reviews
+1. Use Sequential Thinking to **structure your review approach**
+2. **Document concerns** in the Analysis stage
+3. **Synthesize feedback** with constructive suggestions
+4. **Conclude** with clear action items
+
+## Best Practices
+
+### Thought Quality
+- Write **detailed, specific thoughts** rather than vague statements
+- Include **concrete examples** and code snippets when relevant
+- **Challenge assumptions** explicitly in your thinking process
+- **Document trade-offs** and decision criteria
+
+### Workflow Integration
+- **Start complex tasks** with Sequential Thinking planning
+- **Reference your thinking** in Cursor chat conversations
+- **Update your thoughts** as requirements evolve
+- **Generate summaries** to communicate with team members
+
+### Common Patterns
+- **Architecture decisions**: Use all 5 stages for thorough evaluation
+- **Quick fixes**: May only need Problem Definition → Analysis → Conclusion
+- **Learning new technology**: Emphasize Research and Analysis stages
+- **Debugging**: Focus on systematic Analysis stage
+
+## Productivity Tips
+
+### Combine with Cursor Features
+- Use **@past chats** to reference previous Sequential Thinking sessions
+- **Export summaries** as documentation for complex decisions
+- **Share thinking sessions** with team members for collaboration
+- **Version control** your thinking process for complex projects
+
+### Time Management
+- **Set thought limits** (3-7 thoughts typically work well)
+- **Time-box each stage** to maintain momentum
+- **Use tags consistently** to track patterns across sessions
+- **Clear history** when starting completely new problems
+
+The Sequential Thinking MCP Server transforms chaotic problem-solving into structured, trackable, and shareable workflows that integrate perfectly with your existing Cursor setup.
