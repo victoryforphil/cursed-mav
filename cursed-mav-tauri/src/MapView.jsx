@@ -25,7 +25,6 @@ function MapView() {
   const [longitude, setLongitude] = useState(-122.4194);
   const [altitude, setAltitude] = useState(0);
   const notificationId = useRef(null);
-  const unlistenFn = useRef(null);
 
   const [viewState, setViewState] = useState({
     longitude: -122.4194,
