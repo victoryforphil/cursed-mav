@@ -1,5 +1,5 @@
 /* Dockview Theme for Shadcn Integration
- * Provides light/dark theming that matches Shadcn default theme
+ * Provides light/dark theming that matches Shadcn default theme with a modern look
  */
 
 .dockview-theme-shadcn {
@@ -7,10 +7,10 @@
   --dv-background-color: var(--background);
   --dv-group-view-background-color: var(--card);
   
-  /* Tab styling */
-  --dv-tabs-and-actions-container-height: 38px;
+  /* Tab styling - reduced height */
+  --dv-tabs-and-actions-container-height: 36px;
   --dv-tabs-and-actions-container-background-color: var(--card);
-  --dv-tabs-and-actions-container-font-size: 13px;
+  --dv-tabs-and-actions-container-font-size: 14px;
   
   /* Active/Inactive panel colors */
   --dv-activegroup-visiblepanel-tab-background-color: var(--primary);
@@ -24,7 +24,7 @@
   --dv-inactivegroup-hiddenpanel-tab-color: var(--muted-foreground);
   
   /* Tab divider styling */
-  --dv-tab-divider-color: var(--border);
+  --dv-tab-divider-color: transparent;
   
   /* Drag/drop styling */
   --dv-drag-over-background-color: var(--accent);
@@ -44,7 +44,7 @@
   --dv-icon-hover-background-color: var(--accent);
   
   /* Box shadows */
-  --dv-floating-box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --dv-floating-box-shadow: 0 8px 16px -2px rgba(0, 0, 0, 0.15), 0 3px 6px -2px rgba(0, 0, 0, 0.1);
   
   /* Sash colors (resize handles) */
   --dv-active-sash-color: var(--primary);
@@ -57,69 +57,274 @@
   --dv-side-nav-arrow-hover-opacity: 0.9;
 }
 
+/* Root container for better control of the dockview theme */
+.dockview-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* Animation variables */
+:root {
+  --animation-duration: 0.2s;
+  --animation-timing: cubic-bezier(0.2, 0, 0, 1);
+  --glass-opacity: 0.7;
+  --glass-blur: 10px;
+}
+
+/* Glass variant with more pronounced effect */
+.dockview-glass-variant {
+  --glass-opacity: 0.65;
+  --glass-blur: 16px;
+}
+
 /* Panel and tab styling */
 .dockview-theme-shadcn .tabs-container {
   border-radius: var(--radius) var(--radius) 0 0;
+  background-color: var(--muted);
 }
 
 .dockview-theme-shadcn .tabs-and-actions-container {
   border-radius: var(--radius) var(--radius) 0 0;
+  background-color: var(--muted);
+  padding: 4px 6px 0;
+  height: var(--dv-tabs-and-actions-container-height);
 }
 
+/* Glass effect on tabs in glass variant */
+.dockview-glass-variant .dockview-theme-shadcn .tabs-and-actions-container {
+  background-color: rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: none;
+}
+
+
+/* More rounded tabs with spacing between them */
 .dockview-theme-shadcn .tab {
-  border-radius: var(--radius) var(--radius) 0 0;
-  margin-right: 2px;
-  padding: 0 10px;
-  transition: background-color 0.15s ease, color 0.15s ease;
+  border-radius: var(--radius);
+  margin-right: 6px;
+  padding: 0 12px;
+  transition: all var(--animation-duration) var(--animation-timing);
+  height: 28px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  opacity: 0.85;
+  border: 1px solid transparent;
+  box-shadow: none;
 }
 
+/* Glass effect on tabs in glass variant */
+.dockview-glass-variant .dockview-theme-shadcn .tab {
+  background-color: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(calc(var(--glass-blur) * 0.8));
+  backdrop-filter: blur(calc(var(--glass-blur) * 0.8));
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dockview-theme-shadcn .tab:hover {
+  opacity: 1;
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.dockview-glass-variant .dockview-theme-shadcn .tab:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dockview-theme-shadcn .tab.active {
+  opacity: 1;
+  background-color: var(--card);
+  color: var(--foreground);
+  border-color: var(--border);
+  box-shadow: 0 0 0 1px var(--primary);
+}
+
+.dockview-glass-variant .dockview-theme-shadcn .tab.active {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 1px var(--primary), 0 0 8px rgba(var(--primary-rgb), 0.3);
+}
+
+/* Shadcn card-like panel styling */
 .dockview-theme-shadcn .panel {
-  border-radius: 0 0 var(--radius) var(--radius);
+  border-radius: var(--radius);
   overflow: hidden;
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  animation: panel-appear var(--animation-duration) var(--animation-timing);
+}
+
+/* Glass effect on panels in glass variant */
+.dockview-glass-variant .dockview-theme-shadcn .panel {
+  background-color: rgba(0, 0, 0, 0.15);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes panel-appear {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Glass effect for modern look */
+.dark .dockview-theme-shadcn .view-container {
+  background-color: rgba(23, 23, 23, var(--glass-opacity));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.dockview-theme-shadcn .view-container {
+  background-color: rgba(255, 255, 255, var(--glass-opacity));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+/* Enhanced glass effect in glass variant */
+.dockview-glass-variant .dark .dockview-theme-shadcn .view-container {
+  background-color: rgba(15, 15, 15, var(--glass-opacity));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 /* Sash (resize handle) styling */
 .dockview-theme-shadcn .split-view-sash {
-  transition: background-color 0.15s ease;
+  transition: all var(--animation-duration) var(--animation-timing);
+  opacity: 0;
 }
 
 .dockview-theme-shadcn .split-view-sash:hover {
   background-color: var(--primary);
+  opacity: 0.5;
 }
 
 /* Watermark styling */
 .dockview-theme-shadcn .watermark {
   color: var(--muted-foreground);
-  opacity: 0.4;
+  opacity: 0.3;
   font-size: 14px;
+  font-weight: 300;
 }
 
 /* Tab close button styling */
+.dockview-theme-shadcn .tab-actions {
+  margin-left: 6px;
+}
+
 .dockview-theme-shadcn .tab-actions .tab-action-close {
-  opacity: 0.6;
-  transition: opacity 0.15s ease;
+  opacity: 0.5;
+  transition: all var(--animation-duration) var(--animation-timing);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .dockview-theme-shadcn .tab-actions .tab-action-close:hover {
   opacity: 1;
   background-color: var(--destructive);
   border-radius: 50%;
+  transform: scale(1.1);
 }
 
-/* Drag and drop overlay styling */
+/* Drag and drop overlay styling with glass effect */
 .dockview-theme-shadcn .drag-overlay {
-  -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(2px);
-  background-color: var(--primary-light);
-  opacity: 0.1;
+  -webkit-backdrop-filter: blur(calc(var(--glass-blur) * 0.6));
+  backdrop-filter: blur(calc(var(--glass-blur) * 0.6));
+  background-color: var(--primary);
+  opacity: 0.08;
   border-radius: var(--radius);
+  border: 2px dashed var(--primary);
+  animation: pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    opacity: 0.05;
+  }
+  to {
+    opacity: 0.12;
+  }
 }
 
 /* Group header styling */
 .dockview-theme-shadcn .groupview.active-group > .tabs-and-actions-container {
-  border-bottom: 2px solid var(--primary);
+  border-bottom: none;
 }
 
 .dockview-theme-shadcn .groupview.inactive-group > .tabs-and-actions-container {
-  border-bottom: 1px solid var(--border);
+  border-bottom: none;
+}
+
+/* Panel content styling - card like with padding */
+.dockview-theme-shadcn .panel-content {
+  padding: 12px;
+  background-color: var(--card);
+}
+
+/* Glass effect on panel content in glass variant */
+.dockview-glass-variant .dockview-theme-shadcn .panel-content {
+  background-color: transparent;
+}
+
+/* Group view styling - Shadcn card with shadow effects */
+.dockview-theme-shadcn .groupview {
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin: 6px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  transition: box-shadow var(--animation-duration) var(--animation-timing), transform var(--animation-duration) var(--animation-timing);
+}
+
+/* Glass effect on groupview in glass variant */
+.dockview-glass-variant .dockview-theme-shadcn .groupview {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.dockview-theme-shadcn .groupview:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.dockview-glass-variant .dockview-theme-shadcn .groupview:hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Empty dock styling */
+.dockview-theme-shadcn .dockview-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--muted-foreground);
+  font-size: 15px;
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* Tab title styling */
+.dockview-theme-shadcn .tab-title {
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
 } 

@@ -7,10 +7,10 @@ import { DockviewThemeProvider } from './components/dockview-theme-provider'
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <DockviewThemeProvider>
+      <DockviewThemeProvider glassEffect={true}>
         <div className="h-screen flex flex-col overflow-hidden">
           <Header />
-          <div className="flex-1 relative overflow-hidden">
+          <div className="flex-1 relative overflow-hidden bg-background">
             <DockDashboard />
           </div>
         </div>
